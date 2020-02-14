@@ -16,3 +16,8 @@ Usage:      rid SUBREDDIT [hot|new|rising|top|controversial] [number] [all|year|
 Examples:   rid starterpacks new 10
             rid funny top 50 month
 ```
+
+Installation
+============
+
+If you are an Archlinux user, you can install the AUR package [rid-git](https://aur.archlinux.org/packages/rid-git).
