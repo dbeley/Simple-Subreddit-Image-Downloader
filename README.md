@@ -1,7 +1,7 @@
 rid - Reddit Image Downloader
 ==========================
 
-Simple script downloading images from subreddit. 
+Simple bash script to download images from subreddit. 
 
 Requirements
 ============

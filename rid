@@ -1,6 +1,6 @@
 #!/bin/bash
 #
-# download reddit images from subreddit
+# rid - Reddit Image Downloader - Simple bash script to download images from a subreddit.
 
 timeout=60
 
