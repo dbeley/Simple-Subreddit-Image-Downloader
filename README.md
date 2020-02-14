@@ -12,7 +12,7 @@ Requirements
 Usage
 =====
 ```
-Usage:    rid 'subreddit_name' [hot|new|rising|top|controversial] [number] [all|year|month|week|day]
-Examples: rid starterpacks new 10
-          rid funny top 50 month
+Usage:      rid SUBREDDIT [hot|new|rising|top|controversial] [number] [all|year|month|week|day]
+Examples:   rid starterpacks new 10
+            rid funny top 50 month
 ```

@@ -5,7 +5,7 @@
 timeout=60
 
 usage() { printf "%s" "\
-Usage:      rid 'subreddit_name' [hot|new|rising|top|controversial] [number] [all|year|month|week|day]
+Usage:      rid SUBREDDIT [hot|new|rising|top|controversial] [number] [all|year|month|week|day]
 Examples:   rid starterpacks new 10
             rid funny top 50 month
 "; exit 0;
