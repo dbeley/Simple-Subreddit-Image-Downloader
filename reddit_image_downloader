@@ -16,7 +16,7 @@ sort=$2
 number=$3
 top_time=$4
 
-if [ -z $subreddit ]; then
+if [ "$1" == "-h" ] || [ -z $subreddit ]; then
     usage
 fi
 
