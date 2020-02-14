@@ -46,7 +46,7 @@ while : ; do
         name=$(echo -n "$names" | sed -n "$a"p)
         id=$(echo -n "$ids" | sed -n "$a"p)
         ext=$(echo -n "${url##*.}" | cut -d '?' -f 1)
-        newname="$subreddit"_"$sort""$timeframe"_"$(printf "%04d" $i)"_"$name"_$id.$ext
+        newname="$subreddit"_"$sort""$top_time"_"$(printf "%04d" $i)"_"$name"_$id.$ext
         printf "$i/$number : $newname\n"
         wget -T $timeout --no-check-certificate -nv -nc -P down -O "$subreddit/$newname" $url &>/dev/null &
     	((a=a+1))
