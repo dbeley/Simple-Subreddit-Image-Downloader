@@ -5,9 +5,9 @@
 timeout=60
 
 usage() { printf "%s" "\
-Usage:      rid SUBREDDIT [hot|new|rising|top|controversial] [number] [all|year|month|week|day]
+Usage:      rid SUBREDDIT [hot|new|rising|top|controversial] [number] [all|year|month|week|day] [path]
 Examples:   rid starterpacks new 10
-            rid funny top 50 month
+            rid funny top 50 month ~/Pictures/
 "; exit 0;
 }
 
@@ -15,6 +15,7 @@ subreddit=$1
 sort=$2
 number=$3
 top_time=$4
+path=$5
 
 if [ "$1" == "-h" ] || [ -z $subreddit ]; then
     usage
@@ -32,9 +33,15 @@ if [ -z $number ]; then
 	number=200
 fi
 
+if [ -z $path ]; then
+	path=$(pwd)
+else
+	mkdir -p $path
+fi
+
 url="https://www.reddit.com/r/$subreddit/$sort/.json?raw_json=1&t=$top_time"
 content=$(wget -T $timeout -q -O - $url)
-mkdir -p $subreddit
+mkdir -p $path/$subreddit
 i=1
 while : ; do
     urls=$(echo -n "$content" | jq -r '.data.children[]|select(.data.post_hint|test("image")?) | .data.preview.images[0].source.url')
@@ -48,7 +55,7 @@ while : ; do
         ext=$(echo -n "${url##*.}" | cut -d '?' -f 1)
         newname="$subreddit"_"$sort""$top_time"_"$(printf "%04d" $i)"_"$name"_$id.$ext
         printf "$i/$number : $newname\n"
-        wget -T $timeout --no-check-certificate -nv -nc -P down -O "$subreddit/$newname" $url &>/dev/null &
+        wget -T $timeout --no-check-certificate -nv -nc -O "$path/$subreddit/$newname" $url &>/dev/null &
     	((a=a+1))
     	((i=i+1))
 		if [ $i -gt $number ] ; then
